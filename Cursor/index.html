@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irisdescent Recipes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #ff7043;
+            color: white;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .recipes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .recipe-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            width: 280px;
+            padding: 1.5rem 1rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px) scale(1.03);
+        }
+        .recipe-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #eee;
+            margin-bottom: 1rem;
+        }
+        .recipe-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff7043;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0.7rem 0 0.2rem 0;
+            color: #333;
+        }
+        ul, ol {
+            margin: 0 0 0.7rem 1.2rem;
+            padding: 0;
+        }
+        @media (max-width: 900px) {
+            .recipes {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Maxxed Out Recipes</h1>
+        <p>Discover and create the most optimal recipes for your fitness goals!</p>
+    </header>
+    <div class="container">
+        <div class="recipes" id="recipes">
+            <!-- Recipes will be injected here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        const recipes = [
+            {
+                title: "Yogurt Cheesecake",
+                image: "blueberry_yogurt.png", // updated image path
+                ingredients: [
+                    "1.5 cups of Greek Yogurt",
+                    "4 eggs",
+                    "3 Tbsp of Honey/Maple Syrup/Agave",
+                    "2 Tbsp of Oat Flour",
+                    "Blueberries!",
+                ],
+                steps: [
+                    "Stir in bowl",
+                    "Put in the baking pan",
+                    "Oven @ 340F for 30 minutes",
+                    "Makes 4 slices!",
+                    "200 Calories - 20g of Carbs - 16g of Protein"
+                ]
+            },
+            {
+                title: "Home-made Protein Bars",
+                image: "protein_bar.png",
+                ingredients: [
+                    "Blend 1 cup of Oatmeal up till it is fine",
+                    "50g of Protein Powder",
+                    "75g of Powdered Peanut Butter",
+                    "2 Tbsp of Cocoa Powder",
+                    "Kosher Salt sparingly",
+                    "120g of Greek Yogurt",
+                    "45g of any type of Milk/Water",
+                    "*Melted Dark Chocolate",
+                    "*Coconut Oil"
+                ],
+                steps: [
+                    "Mix together all ingredients besides in a bowl ",
+                    "Place in a baking pan with parchment paper",
+                    "Lightly melt dark chocolate and mix with a little coconut oil",
+                    "Drizzle the dark chocolate layer on top of the protein bars and add a sprinkle of salt",
+                    "Then Freeze!"
+                ]
+            },
+            {
+                title: "Pumpkin PB Balls",
+                image: "pumpkin_pb_ball.png",
+                ingredients: [
+                    "1 Regular Jar of All Natural Peanut Butter",
+                    "1 Can of Pumpkin Puree",
+                    "100g broccoli",
+                    "50g snap peas",
+                    "2 tbsp soy sauce",
+                    "1 tbsp olive oil"
+                ],
+                steps: [
+                    "Chop all vegetables into bite-sized pieces.",
+                    "Heat olive oil in a wok or large pan.",
+                    "Add vegetables and stir fry for 5-7 minutes.",
+                    "Pour in soy sauce and cook for 2 more minutes.",
+                    "Serve hot with rice or noodles."
+                ]
+            }
+        ];
+
+        function renderRecipes() {
+            const container = document.getElementById('recipes');
+            recipes.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'recipe-card';
+                card.innerHTML = `
+                    <img class="recipe-img" src="${recipe.image}" alt="${recipe.title}">
+                    <div class="recipe-title">${recipe.title}</div>
+                    <div class="section-title">Ingredients:</div>
+                    <ul>
+                        ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                    </ul>
+                    <div class="section-title">Steps:</div>
+                    <ol>
+                        ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                `;
+                container.appendChild(card);
+            });
+        }
+        renderRecipes();
+    </script>
+</body>
+</html> 
