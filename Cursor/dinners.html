@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snacks | Maxxed Out Recipes</title>
+    <title>Dinners | Maxxed Out Recipes</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -45,7 +45,7 @@
             text-align: center;
             color: #fff;
         }
-        .snacks-container {
+        .dinners-container {
             max-width: 900px;
             margin: 2.5rem auto 2rem auto;
             padding: 0 1rem;
@@ -187,23 +187,23 @@
 <body>
     <header>
         <button class="home-btn" onclick="openModal()">Home</button>
-        <div class="main-title">Snacks</div>
+        <div class="main-title">Dinners</div>
     </header>
-    <div class="snacks-container">
+    <div class="dinners-container">
         <div class="recipes" id="recipes">
-            <!-- Snacks recipes will be injected here by JavaScript -->
+            <!-- Dinners recipes will be injected here by JavaScript -->
         </div>
     </div>
     <div class="modal-bg" id="modalBg">
         <div class="modal">
             <div class="modal-title">Maxxed Out Recipes</div>
             <div class="modal-options">
-                <div class="modal-option" onclick="goToDinners()">
+                <div class="modal-option current">
                     <img class="modal-img" src="pasta_og.png" alt="Dinners">
                     <div class="modal-label">Dinners</div>
                     <div class="modal-desc">My Classic Dinners I have compiled since Sophomore year of College.</div>
                 </div>
-                <div class="modal-option current">
+                <div class="modal-option" onclick="goToSnacks()">
                     <img class="modal-img" src="blueberry_yogurt.png" alt="Snacks">
                     <div class="modal-label">Snacks</div>
                     <div class="modal-desc">Delicious Snacks with good Macros.</div>
@@ -221,66 +221,81 @@
                 this.classList.remove('active');
             }
         });
-        function goToDinners() {
-            window.location.href = "dinners.html";
+        function goToSnacks() {
+            window.location.href = "index.html";
         }
+        // No recipes for now
 
-        // Snacks recipes data
-        const recipes = [
+
+          // Snacks recipes data
+          const recipes = [
             {
-                title: "Yogurt Cheesecake",
-                image: "blueberry_yogurt.png",
+                title: "Josh's Classic Pasta",
+                image: "pasta_og.png",
                 ingredients: [
-                    "1.5 cups of Greek Yogurt",
-                    "4 eggs",
-                    "3 Tbsp of Honey/Maple Syrup/Agave",
-                    "2 Tbsp of Oat Flour",
-                    "Blueberries!",
+                   "6 Cloves of Garlic",
+                   "Half an Onion Diced",
+                   "Sliced Tomatoes",
+                   "Tomato Basil Sauce from Trader Joes",
+                   "White Mushrooms",
+                   "Fresh Basil",
+                   "*Extra - Ricotta"
+
                 ],
                 steps: [
-                    "Stir in bowl",
-                    "Put in the baking pan",
-                    "Oven @ 340F for 30 minutes",
-                    "Makes 4 slices!",
-                    "200 Calories - 20g of Carbs - 16g of Protein"
+                    "Olive Oil Pan and get Garlic Golden Brown",
+                    "Take Garlic off and add Diced Onions",
+                    "Add Tomatoes and shortly after the Sauce",
+                    "Be cooking your pasta while doing the Sauce, make sure to add Salt!",
+                    "Add Garlic back in",
+                    "Put pasta into the Pan and top with Fresh Basil and Ricotta"
                 ]
             },
             {
-                title: "Home-made Protein Bars",
-                image: "protein_bar.png",
+                title: "Original Chicken Rice Bowl",
+                image: "chickenrice.png",
                 ingredients: [
-                    "Blend 1 cup of Oatmeal up till it is fine",
-                    "50g of Protein Powder",
-                    "75g of Powdered Peanut Butter",
-                    "2 tbsp of Cocoa Powder",
-                    "Kosher Salt sparingly",
-                    "120g of Greek Yogurt",
-                    "45g of any type of Milk/Water",
-                    "*Melted Dark Chocolate",
-                    "*Coconut Oil"
+                    "Chicken Breast",
+                    "Pepper",
+                    "Salt",
+                    "Garlic Powder",
+                    "Soy Sauce",
+                    "One Egg",
+                    "Chili Glaze",
+                    "Honey",
+                    "Ketchup",
+                    "Flour/Corn Starch/Potato Starch"
                 ],
                 steps: [
-                    "Mix together all ingredients besides in a bowl ",
-                    "Place in a baking pan with parchment paper",
-                    "Lightly melt dark chocolate and mix with a little coconut oil",
-                    "Drizzle the dark chocolate layer on top of the protein bars and add a sprinkle of salt",
-                    "Then Freeze!"
+                    "Dice Chicken Breast",
+                    "Add to Mixing bowl with the Soy Sauce, Egg and Seasonings",
+                    "Put in container and add Flour and shake!",
+                    "Put in air fryer @ 405F for 20 minutes - flip at 10",
+                    "Create Sauce by adding Chili Glaze, Soy Sauce, Ketchup, Honey and Water in pan",
+                    "Add Chicken once done and let it finish cooking!"
                 ]
             },
             {
-                title: "Pumpkin PB Balls",
-                image: "pumpkin_pb_ball.png",
+                title: "Ultimate Steak Feast",
+                image: "steak1.png",
                 ingredients: [
-                    "1 Regular Jar of All Natural Peanut Butter",
-                    "1 Can of Pumpkin Puree",
-                    "Half scoop of Protein Powder",
-                    "Dark Chocolate Chips",
+                    "Ribeye Steak",
+                    "Asparagus",
+                    "Avocado",
+                    "2 Fried Eggs",
+                    "2 Lime",
+                    "Tomato",
+                    "Mozzarella",
+                    "Jalapeno",
+                    "Onions"
                 ],
                 steps: [
-                   "Mix all ingredients together in a bowl",
-                   "Roll into balls and freeze",
-                   "Makes around 20 balls",
-                   "120 Calories - 6g of Carbs - 5g of Protein"
+                   "Cook Medium-Rare Steak",
+                   "Sliced Avocado on Plate",
+                   "Grilled Asparagus",
+                   "Sauce - Onions, Jalapeno, Tomatoes, Avocado, and 2 Limes",
+                   "Fried Eggs on Plate",
+                   "Add Sauce beside the Steak and enjoy"
                 ]
             }
         ];
