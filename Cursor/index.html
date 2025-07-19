@@ -365,97 +365,95 @@
                 ]
             },
             {
-                title: "Chocolate Protein Shake",
-                image: "blueberry_yogurt.png",
+                title: "PB Jelly",
+                image: "PB.png",
                 ingredients: [
-                    "1 scoop Chocolate Protein Powder",
-                    "1 cup Almond Milk",
+                    "2 Pieces of Sour Dough Bread",
+                    "1/2 Cup of Peanut Butter",
                     "1 Banana",
-                    "2 tbsp Peanut Butter",
-                    "Ice cubes",
+                    "Cinnamon Sprinkle",
+                    "Berry Jam",
                     "Optional: Honey for sweetness"
                 ],
                 steps: [
-                    "Add all ingredients to blender",
-                    "Blend until smooth",
-                    "Pour into glass and enjoy",
-                    "250 Calories - 25g of Carbs - 30g of Protein"
+                    "Toast Bread",
+                    "Add Peanut Butter and Jelly",
+                    "Add Banana Slices and Top with Cinnamon"
                 ]
             },
             {
-                title: "Greek Yogurt Parfait",
-                image: "protein_bar.png",
+                title: "Greek Yogurt Bowl",
+                image: "greek_yogurt.png",
                 ingredients: [
-                    "1 cup Greek Yogurt",
-                    "1/4 cup Granola",
-                    "1/2 cup Mixed Berries",
+                    "2 cup Greek Yogurt",
+                    "1 cup Granola",
+                    "1/2 cup Blue Berries",
                     "1 tbsp Honey",
                     "1 tbsp Chia Seeds",
-                    "1 tbsp Almonds"
+                    "1/2 cup Peanut Butter",
+                    "1/4th Scoop Whey Protein Powder"
                 ],
                 steps: [
                     "Layer yogurt in glass",
-                    "Add granola and berries",
-                    "Drizzle with honey",
-                    "Top with chia seeds and almonds",
-                    "180 Calories - 22g of Carbs - 18g of Protein"
+                    "Mix Protein and Yogurt",
+                    "Add Peanut Butter",
+                    "Top with Chia Seeds and Granola",
+                    "Drizzle with honey"
                 ]
             },
             {
-                title: "Energy Bites",
-                image: "pumpkin_pb_ball.png",
+                title: "Maxxed Out Fruit Bowl",
+                image: "fruit_bowl.png",
                 ingredients: [
-                    "1 cup Dates",
-                    "1/2 cup Almonds",
-                    "1/4 cup Oats",
-                    "2 tbsp Coconut Oil",
-                    "1 tbsp Chia Seeds",
-                    "1 tbsp Cacao Powder"
+                    "Watermelon",
+                    "Pineapple",
+                    "Kiwi",
+                    "Blue Berries",
+                    "Dragon Fruit",
+                    "Coconut Chunks",
+                    "*Lime"
                 ],
                 steps: [
-                    "Process dates and almonds in food processor",
-                    "Mix in remaining ingredients",
-                    "Roll into small balls",
-                    "Refrigerate for 30 minutes",
-                    "140 Calories - 18g of Carbs - 4g of Protein"
+                    "Mix all Fruits in Bowl",
+                    "Top with Fresh Lime",
+                    "Sprinkle with Sea Salt"
                 ]
             },
             {
-                title: "Protein Pancakes",
-                image: "blueberry_yogurt.png",
+                title: "Protein Shake",
+                image: "protein_shake.png",
                 ingredients: [
-                    "1 scoop Vanilla Protein Powder",
-                    "1/2 cup Oat Flour",
-                    "1 Egg",
-                    "1/2 cup Almond Milk",
-                    "1 tsp Baking Powder",
+                    "1 scoop Vanilla/Chocolate Protein Powder",
+                    "1/2 Cup Blue Berries",
+                    "2 Cups Milk",
+                    "1/4 Cup Peanut Butter",
+                    "1 Banana",
                     "1 tbsp Honey"
                 ],
                 steps: [
-                    "Mix all ingredients in bowl",
-                    "Cook on griddle until bubbles form",
-                    "Flip and cook other side",
-                    "Serve with berries and syrup",
-                    "320 Calories - 35g of Carbs - 28g of Protein"
+                    "Add Milk to Blender",
+                    "Protein Powder and other Ingredients",
+                    "Blend till Smooth!"
                 ]
             },
             {
-                title: "Trail Mix",
-                image: "protein_bar.png",
+                title: "Classic Acai Bowl",
+                image: "acai_rawpb.png",
                 ingredients: [
-                    "1/2 cup Almonds",
+                    "3 Scoops Acai",
                     "1/4 cup Dark Chocolate Chips",
-                    "1/4 cup Dried Cranberries",
-                    "1/4 cup Pumpkin Seeds",
+                    "1/4 cup Peanut Butter",
+                    "1/4 cup Pumpkin Seeds", 
                     "1/4 cup Coconut Flakes",
-                    "1 tbsp Cinnamon"
+                    "1 tbsp Cinnamon",
+                    "1 Banana",
+                    "1/4 cup Granola"
                 ],
                 steps: [
-                    "Mix all ingredients in bowl",
-                    "Store in airtight container",
-                    "Perfect for on-the-go snacking",
-                    "Serving size: 1/4 cup",
-                    "160 Calories - 12g of Carbs - 6g of Protein"
+                    "Add Acai to Bowl",
+                    "Slice Banana into Bowl",
+                    "Add Peanut Butter",
+                    "Add rest of Toppings!"
                 ]
             }
         ];
@@ -516,7 +514,7 @@
 
         function updateCarousel() {
             const track = document.getElementById('carouselTrack');
-            const cardWidth = 220 + 24; // card width + gap
+            const cardWidth = 230 ; // card width + gap
             const offset = currentPage * cardsPerPage * cardWidth;
             track.style.transform = `translateX(-${offset}px)`;
             
