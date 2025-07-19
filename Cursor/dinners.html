@@ -66,6 +66,7 @@
             flex-direction: column;
             align-items: center;
             transition: transform 0.2s;
+            cursor: pointer;
         }
         .recipe-card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -230,7 +231,7 @@
           // Snacks recipes data
           const recipes = [
             {
-                title: "Josh's Classic Pasta",
+                title: "Joshs Classic Pasta",
                 image: "pasta_og.png",
                 ingredients: [
                    "6 Cloves of Garlic",
@@ -248,7 +249,8 @@
                     "Add Tomatoes and shortly after the Sauce",
                     "Be cooking your pasta while doing the Sauce, make sure to add Salt!",
                     "Add Garlic back in",
-                    "Put pasta into the Pan and top with Fresh Basil and Ricotta"
+                    "Put pasta into the Pan and top with Fresh Basil and Ricotta",
+                    "***Add Meatballs for more Protein/Calories"
                 ]
             },
             {
@@ -305,6 +307,7 @@
             recipes.forEach(recipe => {
                 const card = document.createElement('div');
                 card.className = 'recipe-card';
+                card.onclick = () => goToRecipe(recipe.title);
                 card.innerHTML = `
                     <img class="recipe-img" src="${recipe.image}" alt="${recipe.title}">
                     <div class="recipe-title">${recipe.title}</div>
@@ -319,6 +322,11 @@
                 `;
                 container.appendChild(card);
             });
+        }
+        function goToRecipe(recipeTitle) {
+            // Convert recipe title to a filename-friendly format
+            const filename = recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
+            window.location.href = filename;
         }
         renderRecipes();
     </script>

@@ -46,27 +46,34 @@
             color: #fff;
         }
         .snacks-container {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 2.5rem auto 2rem auto;
             padding: 0 1rem;
         }
-        .recipes {
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .carousel-track {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
+            transition: transform 0.5s ease-in-out;
+            gap: 1.5rem;
         }
         .recipe-card {
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            width: 280px;
-            padding: 1.5rem 1rem 1rem 1rem;
+            min-width: 220px;
+            max-width: 220px;
+            padding: 1.5rem 1rem 1.5rem 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             transition: transform 0.2s;
             cursor: pointer;
+            flex-shrink: 0;
+            min-height: 400px;
         }
         .recipe-card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -80,21 +87,71 @@
             margin-bottom: 1rem;
         }
         .recipe-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             color: #ff7043;
             text-align: center;
+            line-height: 1.3;
         }
         .section-title {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin: 0.7rem 0 0.2rem 0;
+            margin: 0.8rem 0 0.3rem 0;
             color: #333;
         }
         ul, ol {
-            margin: 0 0 0.7rem 1.2rem;
+            margin: 0 0 0.8rem 1rem;
             padding: 0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        li {
+            margin-bottom: 0.3rem;
+        }
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .nav-btn {
+            background: #ff7043;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-btn:hover {
+            background: #e55a2b;
+        }
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .page-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .page-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .page-dot.active {
+            background: #ff7043;
         }
         /* Modal styles */
         .modal-bg {
@@ -173,10 +230,19 @@
             text-align: center;
             margin: 0 0.7rem 0.7rem 0.7rem;
         }
+        @media (max-width: 1200px) {
+            .recipe-card {
+                min-width: 200px;
+                max-width: 200px;
+            }
+        }
         @media (max-width: 800px) {
-            .recipes {
-                flex-direction: column;
-                align-items: center;
+            .carousel-track {
+                gap: 1rem;
+            }
+            .recipe-card {
+                min-width: 180px;
+                max-width: 180px;
             }
             .modal-options {
                 flex-direction: column;
@@ -191,8 +257,17 @@
         <div class="main-title">Snacks</div>
     </header>
     <div class="snacks-container">
-        <div class="recipes" id="recipes">
-            <!-- Snacks recipes will be injected here by JavaScript -->
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Recipe cards will be injected here by JavaScript -->
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <button class="nav-btn" id="prevBtn" onclick="previousPage()">‹</button>
+            <button class="nav-btn" id="nextBtn" onclick="nextPage()">›</button>
+        </div>
+        <div class="page-indicator" id="pageIndicator">
+            <!-- Page dots will be generated here -->
         </div>
     </div>
     <div class="modal-bg" id="modalBg">
@@ -226,6 +301,11 @@
             window.location.href = "dinners.html";
         }
 
+        // Carousel logic
+        let currentPage = 0;
+        const cardsPerPage = 6;
+        let totalPages = 0;
+
         // Snacks recipes data
         const recipes = [
             {
@@ -243,6 +323,7 @@
                     "Put in the baking pan",
                     "Oven @ 340F for 30 minutes",
                     "Makes 4 slices!",
+                    "200 Calories - 20g of Carbs - 16g of Protein"
                 ]
             },
             {
@@ -264,8 +345,7 @@
                     "Place in a baking pan with parchment paper",
                     "Lightly melt dark chocolate and mix with a little coconut oil",
                     "Drizzle the dark chocolate layer on top of the protein bars and add a sprinkle of salt",
-                    "Then Freeze!",
-                    "Makes around 6 Bars"
+                    "Then Freeze!"
                 ]
             },
             {
@@ -281,12 +361,109 @@
                    "Mix all ingredients together in a bowl",
                    "Roll into balls and freeze",
                    "Makes around 20 balls",
+                   "120 Calories - 6g of Carbs - 5g of Protein"
+                ]
+            },
+            {
+                title: "Chocolate Protein Shake",
+                image: "blueberry_yogurt.png",
+                ingredients: [
+                    "1 scoop Chocolate Protein Powder",
+                    "1 cup Almond Milk",
+                    "1 Banana",
+                    "2 tbsp Peanut Butter",
+                    "Ice cubes",
+                    "Optional: Honey for sweetness"
+                ],
+                steps: [
+                    "Add all ingredients to blender",
+                    "Blend until smooth",
+                    "Pour into glass and enjoy",
+                    "250 Calories - 25g of Carbs - 30g of Protein"
+                ]
+            },
+            {
+                title: "Greek Yogurt Parfait",
+                image: "protein_bar.png",
+                ingredients: [
+                    "1 cup Greek Yogurt",
+                    "1/4 cup Granola",
+                    "1/2 cup Mixed Berries",
+                    "1 tbsp Honey",
+                    "1 tbsp Chia Seeds",
+                    "1 tbsp Almonds"
+                ],
+                steps: [
+                    "Layer yogurt in glass",
+                    "Add granola and berries",
+                    "Drizzle with honey",
+                    "Top with chia seeds and almonds",
+                    "180 Calories - 22g of Carbs - 18g of Protein"
+                ]
+            },
+            {
+                title: "Energy Bites",
+                image: "pumpkin_pb_ball.png",
+                ingredients: [
+                    "1 cup Dates",
+                    "1/2 cup Almonds",
+                    "1/4 cup Oats",
+                    "2 tbsp Coconut Oil",
+                    "1 tbsp Chia Seeds",
+                    "1 tbsp Cacao Powder"
+                ],
+                steps: [
+                    "Process dates and almonds in food processor",
+                    "Mix in remaining ingredients",
+                    "Roll into small balls",
+                    "Refrigerate for 30 minutes",
+                    "140 Calories - 18g of Carbs - 4g of Protein"
+                ]
+            },
+            {
+                title: "Protein Pancakes",
+                image: "blueberry_yogurt.png",
+                ingredients: [
+                    "1 scoop Vanilla Protein Powder",
+                    "1/2 cup Oat Flour",
+                    "1 Egg",
+                    "1/2 cup Almond Milk",
+                    "1 tsp Baking Powder",
+                    "1 tbsp Honey"
+                ],
+                steps: [
+                    "Mix all ingredients in bowl",
+                    "Cook on griddle until bubbles form",
+                    "Flip and cook other side",
+                    "Serve with berries and syrup",
+                    "320 Calories - 35g of Carbs - 28g of Protein"
+                ]
+            },
+            {
+                title: "Trail Mix",
+                image: "protein_bar.png",
+                ingredients: [
+                    "1/2 cup Almonds",
+                    "1/4 cup Dark Chocolate Chips",
+                    "1/4 cup Dried Cranberries",
+                    "1/4 cup Pumpkin Seeds",
+                    "1/4 cup Coconut Flakes",
+                    "1 tbsp Cinnamon"
+                ],
+                steps: [
+                    "Mix all ingredients in bowl",
+                    "Store in airtight container",
+                    "Perfect for on-the-go snacking",
+                    "Serving size: 1/4 cup",
+                    "160 Calories - 12g of Carbs - 6g of Protein"
                 ]
             }
         ];
 
         function renderRecipes() {
-            const container = document.getElementById('recipes');
+            const container = document.getElementById('carouselTrack');
+            container.innerHTML = '';
+            
             recipes.forEach(recipe => {
                 const card = document.createElement('div');
                 card.className = 'recipe-card';
@@ -296,21 +473,78 @@
                     <div class="recipe-title">${recipe.title}</div>
                     <div class="section-title">Ingredients:</div>
                     <ul>
-                        ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                        ${recipe.ingredients.slice(0, 3).map(ing => `<li>${ing}</li>`).join('')}
+                        ${recipe.ingredients.length > 3 ? '<li>...</li>' : ''}
                     </ul>
                     <div class="section-title">Steps:</div>
                     <ol>
-                        ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
+                        ${recipe.steps.slice(0, 2).map(step => `<li>${step}</li>`).join('')}
+                        ${recipe.steps.length > 2 ? '<li>...</li>' : ''}
                     </ol>
                 `;
                 container.appendChild(card);
             });
+            
+            totalPages = Math.ceil(recipes.length / cardsPerPage);
+            updatePageIndicator();
+            updateNavigation();
         }
+
         function goToRecipe(recipeTitle) {
-            // Convert recipe title to a filename-friendly format
             const filename = recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
             window.location.href = filename;
         }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updateCarousel();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                updateCarousel();
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const cardWidth = 220 + 24; // card width + gap
+            const offset = currentPage * cardsPerPage * cardWidth;
+            track.style.transform = `translateX(-${offset}px)`;
+            
+            updateNavigation();
+            updatePageIndicator();
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === totalPages - 1;
+        }
+
+        function updatePageIndicator() {
+            const indicator = document.getElementById('pageIndicator');
+            indicator.innerHTML = '';
+            
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = `page-dot ${i === currentPage ? 'active' : ''}`;
+                dot.onclick = () => goToPage(i);
+                indicator.appendChild(dot);
+            }
+        }
+
+        // Initialize
         renderRecipes();
     </script>
 </body>
