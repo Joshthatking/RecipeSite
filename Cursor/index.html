@@ -66,6 +66,7 @@
             flex-direction: column;
             align-items: center;
             transition: transform 0.2s;
+            cursor: pointer;
         }
         .recipe-card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -242,7 +243,6 @@
                     "Put in the baking pan",
                     "Oven @ 340F for 30 minutes",
                     "Makes 4 slices!",
-                    "200 Calories - 20g of Carbs - 16g of Protein"
                 ]
             },
             {
@@ -264,7 +264,8 @@
                     "Place in a baking pan with parchment paper",
                     "Lightly melt dark chocolate and mix with a little coconut oil",
                     "Drizzle the dark chocolate layer on top of the protein bars and add a sprinkle of salt",
-                    "Then Freeze!"
+                    "Then Freeze!",
+                    "Makes around 6 Bars"
                 ]
             },
             {
@@ -280,7 +281,6 @@
                    "Mix all ingredients together in a bowl",
                    "Roll into balls and freeze",
                    "Makes around 20 balls",
-                   "120 Calories - 6g of Carbs - 5g of Protein"
                 ]
             }
         ];
@@ -290,6 +290,7 @@
             recipes.forEach(recipe => {
                 const card = document.createElement('div');
                 card.className = 'recipe-card';
+                card.onclick = () => goToRecipe(recipe.title);
                 card.innerHTML = `
                     <img class="recipe-img" src="${recipe.image}" alt="${recipe.title}">
                     <div class="recipe-title">${recipe.title}</div>
@@ -304,6 +305,11 @@
                 `;
                 container.appendChild(card);
             });
+        }
+        function goToRecipe(recipeTitle) {
+            // Convert recipe title to a filename-friendly format
+            const filename = recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
+            window.location.href = filename;
         }
         renderRecipes();
     </script>

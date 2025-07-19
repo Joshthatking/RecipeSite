@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pumpkin PB Balls | Maxxed Out Recipes</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #ff7043;
+            color: white;
+            padding: 2.2rem 0 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            background: #fff;
+            color: #ff7043;
+            border: 2px solid #ff7043;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.15s, color 0.15s;
+        }
+        .back-btn:hover {
+            background: #ff7043;
+            color: #fff;
+        }
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 0;
+            text-align: center;
+            color: #fff;
+        }
+        .recipe-container {
+            max-width: 1200px;
+            margin: 2.5rem auto 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        .chart-container {
+            flex: 0 0 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1.5rem;
+        }
+        .recipe-content {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 2rem;
+        }
+        .recipe-img {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #eee;
+            margin-bottom: 1.5rem;
+        }
+        .recipe-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #ff7043;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem 0;
+            color: #333;
+        }
+        ul, ol {
+            margin: 0 0 1rem 1.5rem;
+            padding: 0;
+            line-height: 1.6;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 900px) {
+            .recipe-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .chart-container {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
+        <div class="main-title">Pumpkin PB Balls</div>
+    </header>
+    <div class="recipe-container">
+        <div class="chart-container">
+            <canvas id="nutritionChart" width="300" height="300"></canvas>
+        </div>
+        <div class="recipe-content">
+            <img class="recipe-img" src="pumpkin_pb_ball.png" alt="Pumpkin PB Balls">
+            <div class="recipe-title">Pumpkin PB Balls</div>
+            <div class="section-title">Ingredients:</div>
+            <ul>
+                <li>1 Regular Jar of All Natural Peanut Butter</li>
+                <li>1 Can of Pumpkin Puree</li>
+                <li>Half scoop of Protein Powder</li>
+                <li>Dark Chocolate Chips</li>
+            </ul>
+            <div class="section-title">Steps:</div>
+            <ol>
+                <li>Mix all ingredients together in a bowl</li>
+                <li>Roll into balls and freeze</li>
+                <li>Makes around 20 balls</li>
+            </ol>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.location.href = "index.html";
+        }
+        
+        // Create pie chart
+        const ctx = document.getElementById('nutritionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Calories: 120g', 'Carbs: 6g', 'Proteins: 5g'],
+                datasets: [{
+                    data: [120, 6, 5],
+                    backgroundColor: [
+                        '#ff7043',
+                        '#4caf50',
+                        '#2196f3'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [{
+                afterDraw: function(chart) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+                    ctx.restore();
+                    var fontSize = (height / 160).toFixed(2);
+                    ctx.font = 'bold ' + fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+                    ctx.textAlign = "center";
+                    
+                    // Add glow effect
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 0;
+                    ctx.shadowOffsetY = 0;
+                    
+                    var text = chart.data.datasets[0].data[0] + " cal",
+                        textX = width / 2,
+                        textY = height / 2;
+                    
+                    // Draw text with white color and opacity
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    ctx.fillText(text, textX, textY);
+                    
+                    // Reset shadow
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    ctx.save();
+                }
+            }]
+        });
+    </script>
+</body>
+</html> 
