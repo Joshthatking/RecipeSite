@@ -199,6 +199,11 @@
         <div class="modal">
             <div class="modal-title">Maxxed Out Recipes</div>
             <div class="modal-options">
+                <div class="modal-option" onclick="goToHome()">
+                    <img class="modal-img" src="pasta_og.png" alt="Home">
+                    <div class="modal-label">Home</div>
+                    <div class="modal-desc">Recipe Archive Overview</div>
+                </div>
                 <div class="modal-option current">
                     <img class="modal-img" src="pasta_og.png" alt="Dinners">
                     <div class="modal-label">Dinners</div>
@@ -222,6 +227,9 @@
                 this.classList.remove('active');
             }
         });
+        function goToHome() {
+            window.location.href = "home.html";
+        }
         function goToSnacks() {
             window.location.href = "index.html";
         }
