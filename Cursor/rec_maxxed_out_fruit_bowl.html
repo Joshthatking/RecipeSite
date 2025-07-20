@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Original Chicken Rice Bowl | Maxxed Out Recipes</title>
+    <title>Maxxed Out Fruit Bowl | Maxxed Out Recipes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -111,43 +111,37 @@
 </head>
 <body>
     <header>
-        <button class="back-btn" onclick="goBack()">← Back to Dinners</button>
-        <div class="main-title">Original Chicken Rice Bowl</div>
+        <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
+        <div class="main-title">Maxxed Out Fruit Bowl</div>
     </header>
     <div class="recipe-container">
         <div class="chart-container">
             <canvas id="nutritionChart" width="300" height="300"></canvas>
         </div>
         <div class="recipe-content">
-            <img class="recipe-img" src="chickenrice.png" alt="Original Chicken Rice Bowl">
-            <div class="recipe-title">Original Chicken Rice Bowl</div>
+            <img class="recipe-img" src="fruit_bowl.png" alt="Maxxed Out Fruit Bowl">
+            <div class="recipe-title">Maxxed Out Fruit Bowl</div>
             <div class="section-title">Ingredients:</div>
             <ul>
-                <li>Chicken Breast</li>
-                <li>Pepper</li>
-                <li>Salt</li>
-                <li>Garlic Powder</li>
-                <li>Soy Sauce</li>
-                <li>One Egg</li>
-                <li>Chili Glaze</li>
-                <li>Honey</li>
-                <li>Ketchup</li>
-                <li>Flour/Corn Starch/Potato Starch</li>
+                <li>Watermelon</li>
+                <li>Pineapple</li>
+                <li>Kiwi</li>
+                <li>Blue Berries</li>
+                <li>Dragon Fruit</li>
+                <li>Coconut Chunks</li>
+                <li>*Lime</li>
             </ul>
             <div class="section-title">Steps:</div>
             <ol>
-                <li>Dice Chicken Breast</li>
-                <li>Add to Mixing bowl with the Soy Sauce, Egg and Seasonings</li>
-                <li>Put in container and add Flour and shake!</li>
-                <li>Put in air fryer @ 405F for 20 minutes - flip at 10</li>
-                <li>Create Sauce by adding Chili Glaze, Soy Sauce, Ketchup, Honey and Water in pan</li>
-                <li>Add Chicken once done and let it finish cooking!</li>
+                <li>Mix all Fruits in Bowl</li>
+                <li>Top with Fresh Lime</li>
+                <li>Sprinkle with Sea Salt</li>
             </ol>
         </div>
     </div>
     <script>
         function goBack() {
-            window.location.href = "dinners.html";
+            window.location.href = "index.html";
         }
         
         // Create pie chart
@@ -155,9 +149,9 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 380g', 'Carbs: 45g', 'Proteins: 35g'],
+                labels: ['Calories: 250', 'Carbs: 50g', 'Proteins: 5g'],
                 datasets: [{
-                    data: [700, 50, 40],
+                    data: [250, 50, 5],
                     backgroundColor: [
                         '#ff7043',
                         '#4caf50',

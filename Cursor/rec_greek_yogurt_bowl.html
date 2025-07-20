@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-made Protein Bars | Maxxed Out Recipes</title>
+    <title>Greek Yogurt Bowl | Maxxed Out Recipes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -112,35 +112,32 @@
 <body>
     <header>
         <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
-        <div class="main-title">Home-made Protein Bars</div>
+        <div class="main-title">Greek Yogurt Bowl</div>
     </header>
     <div class="recipe-container">
         <div class="chart-container">
             <canvas id="nutritionChart" width="300" height="300"></canvas>
         </div>
         <div class="recipe-content">
-            <img class="recipe-img" src="protein_bar.png" alt="Home-made Protein Bars">
-            <div class="recipe-title">Home-made Protein Bars</div>
+            <img class="recipe-img" src="greek_yogurt.png" alt="Greek Yogurt Bowl">
+            <div class="recipe-title">Greek Yogurt Bowl</div>
             <div class="section-title">Ingredients:</div>
             <ul>
-                <li>Blend 1 cup of Oatmeal up till it is fine</li>
-                <li>50g of Protein Powder</li>
-                <li>75g of Powdered Peanut Butter</li>
-                <li>2 tbsp of Cocoa Powder</li>
-                <li>Kosher Salt sparingly</li>
-                <li>120g of Greek Yogurt</li>
-                <li>45g of any type of Milk/Water</li>
-                <li>*Melted Dark Chocolate</li>
-                <li>*Coconut Oil</li>
+                <li>2 cup Greek Yogurt</li>
+                <li>1 cup Granola</li>
+                <li>1/2 cup Blue Berries</li>
+                <li>1 tbsp Honey</li>
+                <li>1 tbsp Chia Seeds</li>
+                <li>1/2 cup Peanut Butter</li>
+                <li>1/4th Scoop Whey Protein Powder</li>
             </ul>
             <div class="section-title">Steps:</div>
             <ol>
-                <li>Mix together all ingredients besides in a bowl</li>
-                <li>Place in a baking pan with parchment paper</li>
-                <li>Lightly melt dark chocolate and mix with a little coconut oil</li>
-                <li>Drizzle the dark chocolate layer on top of the protein bars and add a sprinkle of salt</li>
-                <li>Then Freeze!</li>
-                <li>Makes about 6 Bars</li>
+                <li>Layer yogurt in glass</li>
+                <li>Mix Protein and Yogurt</li>
+                <li>Add Peanut Butter</li>
+                <li>Top with Chia Seeds and Granola</li>
+                <li>Drizzle with honey</li>
             </ol>
         </div>
     </div>
@@ -154,9 +151,9 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 200g', 'Carbs: 20g', 'Proteins: 25g'],
+                labels: ['Calories: 500', 'Carbs: 35g', 'Proteins: 25g'],
                 datasets: [{
-                    data: [200, 20, 25],
+                    data: [500, 35, 25],
                     backgroundColor: [
                         '#ff7043',
                         '#4caf50',

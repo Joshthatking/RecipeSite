@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pumpkin PB Balls | Maxxed Out Recipes</title>
+    <title>Protein Shake | Maxxed Out Recipes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -112,27 +112,29 @@
 <body>
     <header>
         <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
-        <div class="main-title">Pumpkin PB Balls</div>
+        <div class="main-title">Protein Shake</div>
     </header>
     <div class="recipe-container">
         <div class="chart-container">
             <canvas id="nutritionChart" width="300" height="300"></canvas>
         </div>
         <div class="recipe-content">
-            <img class="recipe-img" src="pumpkin_pb_ball.png" alt="Pumpkin PB Balls">
-            <div class="recipe-title">Pumpkin PB Balls</div>
+            <img class="recipe-img" src="protein_shake.png" alt="Protein Shake">
+            <div class="recipe-title">Protein Shake</div>
             <div class="section-title">Ingredients:</div>
             <ul>
-                <li>1 Regular Jar of All Natural Peanut Butter</li>
-                <li>1 Can of Pumpkin Puree</li>
-                <li>Half scoop of Protein Powder</li>
-                <li>Dark Chocolate Chips</li>
+                <li>1 scoop Vanilla/Chocolate Protein Powder</li>
+                <li>1/2 Cup Blue Berries</li>
+                <li>2 Cups Milk</li>
+                <li>1/4 Cup Peanut Butter</li>
+                <li>1 Banana</li>
+                <li>1 tbsp Honey</li>
             </ul>
             <div class="section-title">Steps:</div>
             <ol>
-                <li>Mix all ingredients together in a bowl</li>
-                <li>Roll into balls and freeze</li>
-                <li>Makes around 20 balls</li>
+                <li>Add Milk to Blender</li>
+                <li>Protein Powder and other Ingredients</li>
+                <li>Blend till Smooth!</li>
             </ol>
         </div>
     </div>
@@ -146,9 +148,9 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 120g', 'Carbs: 6g', 'Proteins: 5g'],
+                labels: ['Calories: 360', 'Carbs: 45g', 'Proteins: 32g'],
                 datasets: [{
-                    data: [120, 6, 5],
+                    data: [360, 32, 32],
                     backgroundColor: [
                         '#ff7043',
                         '#4caf50',
