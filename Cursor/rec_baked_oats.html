@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greek Yogurt Parfait | Maxxed Out Recipes</title>
+    <title>Baked Oats | Maxxed Out Recipes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -112,32 +112,32 @@
 <body>
     <header>
         <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
-        <div class="main-title">Greek Yogurt Parfait</div>
+        <div class="main-title">Baked Oats</div>
     </header>
     <div class="recipe-container">
         <div class="chart-container">
             <canvas id="nutritionChart" width="300" height="300"></canvas>
         </div>
         <div class="recipe-content">
-            <img class="recipe-img" src="protein_bar.png" alt="Greek Yogurt Parfait">
-            <div class="recipe-title">Greek Yogurt Parfait</div>
+            <img class="recipe-img" src="baked_oats.png" alt="Yogurt Cheesecake">
+            <div class="recipe-title">Baked Oats</div>
             <div class="section-title">Ingredients:</div>
             <ul>
-                <li>2 cup Greek Yogurt</li>
-                <li>1 cup Granola</li>
-                <li>1/2 cup Blue Berries</li>
-                <li>1 tbsp Honey</li>
-                <li>1 tbsp Chia Seeds</li>
-                <li>1/2 cup Peanut Butter</li>
-                <li>1/4th Scoop Whey Protein Powder</li>
+                <li>1/2 Cup Oats</li>
+                <li>1/2 Cup Milk</li>
+                <li>1 Scoop Protein Powder</li>
+                <li>1 Tbsp of Peanut Butter Powder</li>
+                <li>1 Tsp of Baking Powder</li>
+                <li>Dark Chocolate Chips</li>
+                <li>*Optional 1/4 Cup of Greek Yogurt</li>
             </ul>
             <div class="section-title">Steps:</div>
             <ol>
-                <li>Layer yogurt in glass</li>
-                <li>Mix Protein and Yogurt</li>
-                <li>Add Peanut Butter</li>
-                <li>Top with Chia Seeds and Granola</li>
-                <li>Drizzle with honey</li>
+                <li>Add Ingredients to Blender</li>
+                <li>Blend till Smooth!</li>
+                <li>Add Dark Chocolate</li>
+                <li>Bake in Oven @ 350F for 14 minutes</li>
+                <li>Top With Peanut Butter</li>
             </ol>
         </div>
     </div>
@@ -151,9 +151,9 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 180g', 'Carbs: 22g', 'Proteins: 18g'],
+                labels: ['Calories: 450', 'Carbs: 50g', 'Proteins: 45g'],
                 datasets: [{
-                    data: [180, 22, 18],
+                    data: [450, 50, 45],
                     backgroundColor: [
                         '#ff7043',
                         '#4caf50',
