@@ -54,8 +54,13 @@
             gap: 3rem;
             align-items: flex-start;
         }
-        .chart-container {
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
             flex: 0 0 300px;
+        }
+        .chart-container {
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
@@ -97,14 +102,56 @@
         li {
             margin-bottom: 0.5rem;
         }
+        .notes-container {
+            background: #fffbe7;
+            border-left: 5px solid #ff7043;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            max-width: 300px;
+            box-shadow: 0 2px 8px rgba(255,112,67,0.07);
+        }
+        .notes-title {
+            font-weight: bold;
+            color: #ff7043;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .notes-content {
+            color: #444;
+            font-size: 1rem;
+        }
+        .rating-badge {
+            background: #ff7043;
+            color: #fff;
+            font-weight: bold;
+            font-size: 2.75rem;
+            border-radius: 50px;
+            padding: .5em 1.2em;
+            margin-left: 5rem;
+            box-shadow: 0 2px 8px rgba(255,112,67,0.15);
+            white-space: nowrap;
+        }
         @media (max-width: 900px) {
             .recipe-container {
                 flex-direction: column;
                 gap: 2rem;
             }
-            .chart-container {
-                flex: none;
+            .left-column {
+                flex-direction: column;
                 width: 100%;
+                max-width: 100%;
+            }
+            .chart-container, .notes-container {
+                max-width: 100%;
+                width: 100%;
+            }
+            .notes-container {
+                max-width: 100%;
+            }
+            .rating-badge {
+                margin-left: 0.7rem;
+                font-size: 1rem;
+                padding: 0.4em 0.9em;
             }
         }
     </style>
@@ -115,11 +162,22 @@
         <div class="main-title">Yogurt Cheesecake</div>
     </header>
     <div class="recipe-container">
-        <div class="chart-container">
-            <canvas id="nutritionChart" width="300" height="300"></canvas>
+        <div class="left-column">
+            <div class="chart-container">
+                <canvas id="nutritionChart" width="300" height="300"></canvas>
+            </div>
+            <div class="notes-container">
+                <div class="notes-title">Notes</div>
+                <div class="notes-content">
+                    This is a light, high-protein cheesecake. Perfect for a light late night snack
+                </div>
+            </div>
         </div>
         <div class="recipe-content">
-            <img class="recipe-img" src="blueberry_yogurt.png" alt="Yogurt Cheesecake">
+            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                <img class="recipe-img" src="blueberry_yogurt.png" alt="Yogurt Cheesecake">
+                <div class="rating-badge">7/10</div>
+            </div>
             <div class="recipe-title">Yogurt Cheesecake</div>
             <div class="section-title">Ingredients:</div>
             <ul>
@@ -135,7 +193,6 @@
                 <li>Put in the baking pan</li>
                 <li>Oven @ 340F for 30 minutes</li>
                 <li>Makes 4 slices!</li>
-                <li>200 Calories - 20g of Carbs - 16g of Protein</li>
             </ol>
         </div>
     </div>
