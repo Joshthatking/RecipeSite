@@ -275,22 +275,22 @@
             <div class="modal-title">Maxxed Out Recipes</div>
             <div class="modal-options">
                 <div class="modal-option" onclick="goToHome()">
-                    <img class="modal-img" src="chickenrice.png" alt="Home">
+                    <img class="modal-img" src="images/chickenrice.png" alt="Home">
                     <div class="modal-label">Home</div>
                     <div class="modal-desc">Recipe Archive Overview</div>
                 </div>
                 <div class="modal-option" onclick="goToDinners()">
-                    <img class="modal-img" src="pasta_og.png" alt="Dinners">
+                    <img class="modal-img" src="images/pasta_og.png" alt="Dinners">
                     <div class="modal-label">Dinners</div>
                     <div class="modal-desc">My Classic Dinners I have compiled since Sophomore year of College.</div>
                 </div>
                 <div class="modal-option" onclick="goToFriends()">
-                    <img class="modal-img" src="baked_oats.png" alt="Community">
+                    <img class="modal-img" src="images/baked_oats.png" alt="Community">
                     <div class="modal-label">Community</div>
                     <div class="modal-desc">Share and discover recipes from the community.</div>
                 </div>
                 <div class="modal-option current">
-                    <img class="modal-img" src="blueberry_yogurt.png" alt="Snacks">
+                    <img class="modal-img" src="images/blueberry_yogurt.png" alt="Snacks">
                     <div class="modal-label">Snacks</div>
                     <div class="modal-desc">Delicious Snacks with good Macros.</div>
                 </div>
@@ -326,7 +326,7 @@
         const recipes = [
             {
                 title: "Yogurt Cheesecake",
-                image: "blueberry_yogurt.png",
+                image: "images/blueberry_yogurt.png",
                 ingredients: [
                     "1.5 cups of Greek Yogurt",
                     "4 eggs",
@@ -344,7 +344,7 @@
             },
             {
                 title: "Home-made Protein Bars",
-                image: "protein_bar.png",
+                image: "images/protein_bar.png",
                 ingredients: [
                     "Blend 1 cup of Oatmeal up till it is fine",
                     "50g of Protein Powder",
@@ -366,7 +366,7 @@
             },
             {
                 title: "Pumpkin PB Balls",
-                image: "pumpkin_pb_ball.png",
+                image: "images/pumpkin_pb_ball.png",
                 ingredients: [
                     "1 Regular Jar of All Natural Peanut Butter",
                     "1 Can of Pumpkin Puree",
@@ -382,7 +382,7 @@
             },
             {
                 title: "PB Jelly",
-                image: "PB.png",
+                image: "images/PB.png",
                 ingredients: [
                     "2 Pieces of Sour Dough Bread",
                     "1/2 Cup of Peanut Butter",
@@ -399,7 +399,7 @@
             },
             {
                 title: "Greek Yogurt Bowl",
-                image: "greek_yogurt.png",
+                image: "images/greek_yogurt.png",
                 ingredients: [
                     "2 cup Greek Yogurt",
                     "1 cup Granola",
@@ -419,7 +419,7 @@
             },
             {
                 title: "Maxxed Out Fruit Bowl",
-                image: "fruit_bowl.png",
+                image: "images/fruit_bowl.png",
                 ingredients: [
                     "Watermelon",
                     "Pineapple",
@@ -437,7 +437,7 @@
             },
             {
                 title: "Protein Shake",
-                image: "protein_shake.png",
+                image: "images/protein_shake.png",
                 ingredients: [
                     "1 scoop Vanilla/Chocolate Protein Powder",
                     "1/2 Cup Blue Berries",
@@ -454,7 +454,7 @@
             },
             {
                 title: "Classic Acai Bowl",
-                image: "acai_rawpb.png",
+                image: "images/acai_rawpb.png",
                 ingredients: [
                     "3 Scoops Acai",
                     "1/4 cup Dark Chocolate Chips",
@@ -474,7 +474,7 @@
             },
             {
                 title: "Baked Oats",
-                image: "baked_oats.png",
+                image: "images/baked_oats.png",
                 ingredients: [
                     "1/2 Cup Oats",
                     "1/2 Cup Milk",
@@ -525,7 +525,7 @@
         }
 
         function goToRecipe(recipeTitle) {
-            const filename = 'rec_' + recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
+            const filename = 'recipes/rec_' + recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
             window.location.href = filename;
         }
 
