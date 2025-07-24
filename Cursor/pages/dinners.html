@@ -200,22 +200,22 @@
             <div class="modal-title">Maxxed Out Recipes</div>
             <div class="modal-options">
                 <div class="modal-option" onclick="goToHome()">
-                    <img class="modal-img" src="images/chickenrice.png" alt="Home">
+                    <img class="modal-img" src="../images/chickenrice.png" alt="Home">
                     <div class="modal-label">Home</div>
                     <div class="modal-desc">Recipe Archive Overview</div>
                 </div>
                 <div class="modal-option current">
-                    <img class="modal-img" src="images/pasta_og.png" alt="Dinners">
+                    <img class="modal-img" src="../images/pasta_og.png" alt="Dinners">
                     <div class="modal-label">Dinners</div>
                     <div class="modal-desc">My Classic Dinners I have compiled since Sophomore year of College.</div>
                 </div>
                 <div class="modal-option" onclick="goToSnacks()">
-                    <img class="modal-img" src="images/blueberry_yogurt.png" alt="Snacks">
+                    <img class="modal-img" src="../images/blueberry_yogurt.png" alt="Snacks">
                     <div class="modal-label">Snacks</div>
                     <div class="modal-desc">Delicious Snacks with good Macros.</div>
                 </div>
                 <div class="modal-option" onclick="goToFriends()">
-                    <img class="modal-img" src="images/baked_oats.png" alt="Community">
+                    <img class="modal-img" src="../images/baked_oats.png" alt="Community">
                     <div class="modal-label">Community</div>
                     <div class="modal-desc">Share and discover recipes from the community.</div>
                 </div>
@@ -236,7 +236,7 @@
             window.location.href = "home.html";
         }
         function goToSnacks() {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
         function goToFriends() {
             window.location.href = "friends.html";
@@ -248,7 +248,7 @@
           const recipes = [
             {
                 title: "Joshs Classic Pasta",
-                image: "images/pasta_og.png",
+                image: "../images/pasta_og.png",
                 ingredients: [
                    "6 Cloves of Garlic",
                    "Half an Onion Diced",
@@ -272,7 +272,7 @@
             },
             {
                 title: "Original Chicken Rice Bowl",
-                image: "images/chickenrice.png",
+                image: "../images/chickenrice.png",
                 ingredients: [
                     "Chicken Breast",
                     "Pepper",
@@ -299,7 +299,7 @@
             },
             {
                 title: "Ultimate Steak Feast",
-                image: "images/steak1.png",
+                image: "../images/steak1.png",
                 ingredients: [
                     "Ribeye Steak",
                     "Asparagus",
@@ -345,7 +345,7 @@
         }
         function goToRecipe(recipeTitle) {
             // Convert recipe title to a filename-friendly format
-            const filename = 'recipes/rec_dinner_' + recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
+            const filename = '../recipes/rec_dinner_' + recipeTitle.toLowerCase().replace(/[^a-z0-9]/g, '_') + '.html';
             window.location.href = filename;
         }
         renderRecipes();
