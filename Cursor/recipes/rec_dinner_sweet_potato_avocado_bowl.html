@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-made Protein Bars | Maxxed Out Recipes</title>
+    <title>Sweet Potato Avocado Bowl | Maxxed Out Recipes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -97,8 +97,6 @@
         li {
             margin-bottom: 0.5rem;
         }
-
-
         .notes-container {
             background: #fffbe7;
             border-left: 5px solid #ff7043;
@@ -127,10 +125,7 @@
             margin-left: 5rem;
             box-shadow: 0 2px 8px rgba(255,112,67,0.15);
             white-space: nowrap;
-        
-
         }
-
         @media (max-width: 900px) {
             .recipe-container {
                 flex-direction: column;
@@ -145,8 +140,8 @@
 </head>
 <body>
     <header>
-        <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
-        <div class="main-title">Home-made Protein Bars</div>
+        <button class="back-btn" onclick="goBack()">← Back to Dinners</button>
+        <div class="main-title">Sweet Potato Avocado Bowl</div>
     </header>
     <div class="recipe-container">
         <div class="left-column">
@@ -156,41 +151,43 @@
             <div class="notes-container">
                 <div class="notes-title">Notes</div>
                 <div class="notes-content">
-                    Homemade protein bars with good ingredients!
+                    A healthy and nutritious bowl perfect for any meal. The combination of sweet potato and avocado creates a satisfying and balanced dish that's both delicious and good for you!
                 </div>
             </div>
         </div>
         <div class="recipe-content">
             <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                <img class="recipe-img" src="../images/protein_bar.png" alt="Protein Bar">
+                <img class="recipe-img" src="../images/sweetbowl.png" alt="Sweet Potato Avocado Bowl">
                 <div class="rating-badge">8/10</div>
             </div>
-            <div class="recipe-title">Home-made Protein Bars</div>
+            <div class="recipe-title">Sweet Potato Avocado Bowl</div>
             <div class="section-title">Ingredients:</div>
             <ul>
-                <li>Blend 1 cup of Oatmeal up till it is fine</li>
-                <li>50g of Protein Powder</li>
-                <li>75g of Powdered Peanut Butter</li>
-                <li>2 tbsp of Cocoa Powder</li>
-                <li>Kosher Salt sparingly</li>
-                <li>120g of Greek Yogurt</li>
-                <li>45g of any type of Milk/Water</li>
-                <li>*Melted Dark Chocolate</li>
-                <li>*Coconut Oil</li>
+                <li>1 Large Sweet Potato</li>
+                <li>1 Ripe Avocado</li>
+                <li>2 Tbsp Red Onion (diced)</li>
+                <li>2/3rds Pound of Ground Beef</li>
+                <li>1 Tbsp Lime Juice</li>
+                <li>1 Tsp Olive Oil</li>
+                <li>Salt and Pepper to taste</li>
+                <li>*Optional: Feta Cheese, Tomatos, Onions, Jalapenos</li>
             </ul>
             <div class="section-title">Steps:</div>
             <ol>
-                <li>Mix together all ingredients besides * in a bowl</li>
-                <li>Place in a baking pan with parchment paper</li>
-                <li>Lightly melt dark chocolate and mix with a little coconut oil</li>
-                <li>Drizzle the dark chocolate layer on top of the protein bars and add a sprinkle of salt</li>
-                <li>Then Freeze!</li>
+                <li>Airfryer 370°F for 20 minutes</li>
+                <li>Wash and cut Sweet Potato</li>
+                <li>While sweet potato bakes, prepare avocado by cutting in half and removing pit</li>
+                <li>Cook Ground Beef and add to Bowl</li>
+                <li>*Add feta cheese if desired</li>
+                <li>*Add Tomatos, Onions, Jalapenos if desired</li>
+                <li>Add sliced avocado on top</li>
+                <li>Sprinkle with fresh cilantro and drizzle with lime juice</li>
             </ol>
         </div>
     </div>
     <script>
         function goBack() {
-            window.location.href = "../index.html";
+            window.location.href = "../pages/dinners.html";
         }
         
         // Create pie chart
@@ -198,9 +195,9 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 180', 'Carbs: 15g', 'Proteins: 22g'],
+                labels: ['Calories: 450', 'Carbs: 55g', 'Proteins: 12g'],
                 datasets: [{
-                    data: [180, 15, 22],
+                    data: [450, 55, 12],
                     backgroundColor: [
                         '#ff7043',
                         '#4caf50',
@@ -266,4 +263,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
