@@ -6,159 +6,372 @@
     <title>Yogurt Cheesecake | Maxxed Out Recipes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f8f8f8;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
+
         header {
             background: #ff7043;
             color: white;
-            padding: 2.2rem 0 1.5rem 0;
+            padding: 1rem 0;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
         }
+
         .back-btn {
             position: absolute;
-            top: 24px;
-            left: 24px;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
             background: #fff;
             color: #ff7043;
             border: 2px solid #ff7043;
             border-radius: 8px;
-            padding: 0.5rem 1.2rem;
-            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             z-index: 10;
             transition: background 0.15s, color 0.15s;
+            white-space: nowrap;
         }
+
         .back-btn:hover {
             background: #ff7043;
             color: #fff;
         }
+
+        .back-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
         .main-title {
-            font-size: 2.2rem;
+            font-size: 1.75rem;
             font-weight: bold;
             margin: 0;
-            text-align: center;
             color: #fff;
+            padding: 0 4rem;
+            word-wrap: break-word;
         }
+
         .recipe-container {
             max-width: 1200px;
-            margin: 2.5rem auto 2rem auto;
+            margin: 2rem auto;
             padding: 0 1rem;
             display: flex;
-            gap: 3rem;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 1.5rem;
         }
+
         .left-column {
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-            flex: 0 0 300px;
+            width: 100%;
         }
+
         .chart-container {
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
             padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .chart-container canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
         .recipe-content {
-            flex: 1;
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            padding: 2rem;
+            padding: 1.5rem;
+            width: 100%;
         }
-        .recipe-img {
+
+        .recipe-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .recipe-img-wrapper {
+            position: relative;
             width: 100%;
             max-width: 400px;
-            height: 250px;
+            margin: 0 auto;
+        }
+
+        .recipe-img {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            max-height: 300px;
             object-fit: cover;
             border-radius: 8px;
             background: #eee;
-            margin-bottom: 1.5rem;
+            display: block;
         }
+
+        .rating-badge {
+            background: #ff7043;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            padding: 0.5em 1em;
+            box-shadow: 0 2px 8px rgba(255,112,67,0.15);
+            white-space: nowrap;
+            text-align: center;
+            align-self: center;
+            min-width: 80px;
+        }
+
         .recipe-title {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: bold;
             margin-bottom: 1rem;
             color: #ff7043;
+            text-align: center;
         }
+
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin: 1.5rem 0 0.5rem 0;
+            margin: 1.5rem 0 0.75rem 0;
             color: #333;
         }
+
         ul, ol {
-            margin: 0 0 1rem 1.5rem;
+            margin: 0 0 1.5rem 1.5rem;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
+
         li {
             margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
         }
+
         .notes-container {
             background: #fffbe7;
             border-left: 5px solid #ff7043;
             border-radius: 8px;
-            padding: 1rem 1.5rem;
-            max-width: 300px;
+            padding: 1rem 1.25rem;
+            width: 100%;
             box-shadow: 0 2px 8px rgba(255,112,67,0.07);
         }
+
         .notes-title {
             font-weight: bold;
             color: #ff7043;
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
+
         .notes-content {
             color: #444;
             font-size: 1rem;
+            line-height: 1.6;
         }
-        .rating-badge {
-            background: #ff7043;
-            color: #fff;
-            font-weight: bold;
-            font-size: 2.75rem;
-            border-radius: 50px;
-            padding: .5em 1.2em;
-            margin-left: 5rem;
-            box-shadow: 0 2px 8px rgba(255,112,67,0.15);
-            white-space: nowrap;
-        }
-        @media (max-width: 900px) {
+
+        /* Tablet and larger screens */
+        @media (min-width: 768px) {
+            header {
+                padding: 1.5rem 0;
+                min-height: 100px;
+            }
+
+            .back-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 1rem;
+                left: 1.5rem;
+            }
+
+            .main-title {
+                font-size: 2rem;
+                padding: 0 6rem;
+            }
+
             .recipe-container {
-                flex-direction: column;
+                flex-direction: row;
+                gap: 2rem;
+                margin: 2.5rem auto;
+                padding: 0 1.5rem;
+            }
+
+            .left-column {
+                flex: 0 0 320px;
+                max-width: 320px;
+            }
+
+            .recipe-content {
+                flex: 1;
+                padding: 2rem;
+            }
+
+            .recipe-header {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+
+            .recipe-img-wrapper {
+                margin: 0;
+                flex: 0 0 auto;
+            }
+
+            .recipe-img {
+                min-height: 250px;
+                max-height: 300px;
+            }
+
+            .rating-badge {
+                font-size: 2rem;
+                align-self: flex-start;
+                margin-top: 0.5rem;
+            }
+
+            .recipe-title {
+                font-size: 1.8rem;
+                text-align: left;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .notes-container {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        /* Desktop screens */
+        @media (min-width: 1024px) {
+            header {
+                padding: 2.2rem 0 1.5rem 0;
+            }
+
+            .back-btn {
+                left: 24px;
+                padding: 0.5rem 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+                padding: 0 8rem;
+            }
+
+            .recipe-container {
+                gap: 3rem;
+                padding: 0 2rem;
+            }
+
+            .left-column {
+                flex: 0 0 300px;
+            }
+
+            .recipe-header {
                 gap: 2rem;
             }
-            .left-column {
-                flex-direction: column;
-                width: 100%;
-                max-width: 100%;
-            }
-            .chart-container, .notes-container {
-                max-width: 100%;
-                width: 100%;
-            }
-            .notes-container {
-                max-width: 100%;
-            }
+
             .rating-badge {
-                margin-left: 0.7rem;
-                font-size: 1rem;
-                padding: 0.4em 0.9em;
+                font-size: 2.75rem;
+                padding: 0.5em 1.2em;
+            }
+
+            .recipe-img {
+                max-width: 400px;
+            }
+        }
+
+        /* Large desktop screens */
+        @media (min-width: 1200px) {
+            .recipe-container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            header {
+                padding: 0.75rem 0;
+                min-height: 70px;
+            }
+
+            .back-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+                left: 0.5rem;
+            }
+
+            .main-title {
+                font-size: 1.5rem;
+                padding: 0 3.5rem;
+            }
+
+            .recipe-container {
+                margin: 1.5rem auto;
+                padding: 0 0.75rem;
+                gap: 1rem;
+            }
+
+            .recipe-content {
+                padding: 1.25rem;
+            }
+
+            .recipe-title {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+                margin: 1.25rem 0 0.5rem 0;
+            }
+
+            ul, ol {
+                margin-left: 1.25rem;
+                line-height: 1.7;
+            }
+
+            .chart-container {
+                padding: 1rem;
+            }
+
+            .notes-container {
+                padding: 0.875rem 1rem;
+            }
+
+            .rating-badge {
+                font-size: 1.25rem;
+                padding: 0.4em 0.8em;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <button class="back-btn" onclick="goBack()">← Back to Snacks</button>
+        <button class="back-btn" onclick="goBack()">← Back</button>
         <div class="main-title">Yogurt Cheesecake</div>
     </header>
     <div class="recipe-container">
@@ -174,8 +387,10 @@
             </div>
         </div>
         <div class="recipe-content">
-            <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-                <img class="recipe-img" src="../images/blueberry_yogurt.png" alt="Yogurt Cheesecake">
+            <div class="recipe-header">
+                <div class="recipe-img-wrapper">
+                    <img class="recipe-img" src="../images/blueberry_yogurt.png" alt="Yogurt Cheesecake">
+                </div>
                 <div class="rating-badge">7/10</div>
             </div>
             <div class="recipe-title">Yogurt Cheesecake</div>
@@ -201,18 +416,31 @@
             window.location.href = "../index.html";
         }
         
+        // Calculate macronutrients
+        const totalCalories = 200;
+        const carbsGrams = 20;
+        const proteinGrams = 16;
+        
+        // Calculate calories from carbs and protein (4 cal per gram)
+        const carbsCalories = carbsGrams * 4;
+        const proteinCalories = proteinGrams * 4;
+        
+        // Calculate remaining calories for fat (9 cal per gram)
+        const fatCalories = totalCalories - carbsCalories - proteinCalories;
+        const fatGrams = Math.round((fatCalories / 9) * 10) / 10; // Round to 1 decimal place
+        
         // Create pie chart
         const ctx = document.getElementById('nutritionChart').getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 200', 'Carbs: 20g', 'Proteins: 16g'],
+                labels: ['Carbs: ' + carbsGrams + 'g', 'Proteins: ' + proteinGrams + 'g', 'Fats: ' + fatGrams + 'g'],
                 datasets: [{
-                    data: [200, 20, 16],
+                    data: [carbsCalories, proteinCalories, fatCalories],
                     backgroundColor: [
-                        '#ff7043',
                         '#4caf50',
-                        '#2196f3'
+                        '#2196f3',
+                        '#ff7043'
                     ],
                     borderWidth: 2,
                     borderColor: '#fff'
@@ -220,21 +448,24 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
+                aspectRatio: 1,
                 plugins: {
                     legend: {
                         position: 'bottom',
                         labels: {
-                            padding: 20,
+                            padding: 15,
                             font: {
-                                size: 14
+                                size: 12
                             }
                         }
                     },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return context.label;
+                                const label = context.label || '';
+                                const calories = context.parsed;
+                                return label + ' (' + calories + ' cal)';
                             }
                         }
                     }
@@ -246,8 +477,8 @@
                         height = chart.height,
                         ctx = chart.ctx;
                     ctx.restore();
-                    var fontSize = (height / 160).toFixed(2);
-                    ctx.font = 'bold ' + fontSize + "em sans-serif";
+                    var fontSize = Math.min(width, height) / 8;
+                    ctx.font = 'bold ' + fontSize + "px sans-serif";
                     ctx.textBaseline = "middle";
                     ctx.textAlign = "center";
                     
@@ -257,7 +488,7 @@
                     ctx.shadowOffsetX = 0;
                     ctx.shadowOffsetY = 0;
                     
-                    var text = chart.data.datasets[0].data[0] + " cal",
+                    var text = totalCalories + " cal",
                         textX = width / 2,
                         textY = height / 2;
                     
@@ -274,4 +505,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

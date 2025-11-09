@@ -187,18 +187,31 @@
             window.location.href = "../index.html";
         }
         
+        // Calculate macronutrients
+        const totalCalories = 350;
+        const carbsGrams = 45;
+        const proteinGrams = 6;
+        
+        // Calculate calories from carbs and protein (4 cal per gram)
+        const carbsCalories = carbsGrams * 4;
+        const proteinCalories = proteinGrams * 4;
+        
+        // Calculate remaining calories for fat (9 cal per gram)
+        const fatCalories = totalCalories - carbsCalories - proteinCalories;
+        const fatGrams = Math.round((fatCalories / 9) * 10) / 10; // Round to 1 decimal place
+        
         // Create pie chart
         const ctx = document.getElementById('nutritionChart').getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Calories: 350', 'Carbs: 45g', 'Proteins: 6g'],
+                labels: ['Carbs: ' + carbsGrams + 'g', 'Proteins: ' + proteinGrams + 'g', 'Fats: ' + fatGrams + 'g'],
                 datasets: [{
-                    data: [350, 45, 6],
+                    data: [carbsCalories, proteinCalories, fatCalories],
                     backgroundColor: [
-                        '#ff7043',
                         '#4caf50',
-                        '#2196f3'
+                        '#2196f3',
+                        '#ff7043'
                     ],
                     borderWidth: 2,
                     borderColor: '#fff'
@@ -220,7 +233,9 @@
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return context.label;
+                                const label = context.label || '';
+                                const calories = context.parsed;
+                                return label + ' (' + calories + ' cal)';
                             }
                         }
                     }
@@ -243,7 +258,7 @@
                     ctx.shadowOffsetX = 0;
                     ctx.shadowOffsetY = 0;
                     
-                    var text = chart.data.datasets[0].data[0] + " cal",
+                    var text = totalCalories + " cal",
                         textX = width / 2,
                         textY = height / 2;
                     
