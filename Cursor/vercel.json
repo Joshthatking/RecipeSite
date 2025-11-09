@@ -1,11 +1,10 @@
 {
   "version": 2,
+  "public": true,
   "builds": [
-    { "src": "**/*.html", "use": "@vercel/static" },
-    { "src": "**/*", "use": "@vercel/static" }
+    { "src": "Cursor/Cursor/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/", "dest": "/home.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { "src": "/(.*)", "dest": "Cursor/Cursor/$1" }
   ]
 }
