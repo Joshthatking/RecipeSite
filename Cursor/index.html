@@ -236,17 +236,131 @@
                 max-width: 200px;
             }
         }
+        
         @media (max-width: 800px) {
+            header {
+                padding: 1.5rem 0 1rem 0;
+            }
+            .home-btn {
+                top: 16px;
+                left: 16px;
+                padding: 0.4rem 1rem;
+                font-size: 1rem;
+            }
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .snacks-container {
+                margin: 1.5rem auto 1rem auto;
+                padding: 0 0.5rem;
+            }
             .carousel-track {
                 gap: 1rem;
             }
+            
+            /* Enable touch scrolling on mobile */
+            .carousel-container {
+                touch-action: pan-x;
+            }
             .recipe-card {
-                min-width: 180px;
-                max-width: 180px;
+                min-width: 160px;
+                max-width: 160px;
+                padding: 1rem 0.75rem;
+                min-height: 380px;
+            }
+            .recipe-img {
+                height: 140px;
+            }
+            .recipe-title {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 0.85rem;
+            }
+            ul, ol {
+                font-size: 0.75rem;
+            }
+            .nav-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            .modal {
+                min-width: 90%;
+                max-width: 90%;
+                padding: 1.5rem 1rem;
+            }
+            .modal-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
             }
             .modal-options {
                 flex-direction: column;
                 gap: 1.2rem;
+            }
+            .modal-option {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .home-btn {
+                top: 12px;
+                left: 12px;
+                padding: 0.35rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            .main-title {
+                font-size: 1.5rem;
+            }
+            .carousel-track {
+                gap: 0.75rem;
+            }
+            .recipe-card {
+                min-width: 140px;
+                max-width: 140px;
+                padding: 0.75rem 0.5rem;
+                min-height: 360px;
+            }
+            .recipe-img {
+                height: 120px;
+            }
+            .recipe-title {
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+            .section-title {
+                font-size: 0.8rem;
+                margin: 0.6rem 0 0.2rem 0;
+            }
+            ul, ol {
+                font-size: 0.7rem;
+                margin: 0 0 0.6rem 0.75rem;
+            }
+            li {
+                margin-bottom: 0.2rem;
+            }
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .page-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .recipe-card {
+                min-width: 130px;
+                max-width: 130px;
+                min-height: 340px;
+            }
+            .modal {
+                min-width: 95%;
+                max-width: 95%;
+                padding: 1rem 0.75rem;
             }
         }
     </style>
@@ -316,11 +430,6 @@
         function goToFriends() {
             window.location.href = "pages/friends.html";
         }
-
-        // Carousel logic
-        let currentPage = 0;
-        const cardsPerPage = 6;
-        let totalPages = 0;
 
         // Snacks recipes data
         const recipes = [
@@ -494,6 +603,34 @@
             }
         ];
 
+        // Carousel logic
+        let currentPage = 0;
+        let cardsPerPage = 6;
+        let totalPages = 0;
+        
+        // Adjust cardsPerPage based on screen size
+        function updateCardsPerPage() {
+            const width = window.innerWidth;
+            if (width <= 400) {
+                cardsPerPage = 2;
+            } else if (width <= 600) {
+                cardsPerPage = 2;
+            } else if (width <= 800) {
+                cardsPerPage = 3;
+            } else if (width <= 1200) {
+                cardsPerPage = 4;
+            } else {
+                cardsPerPage = 5;
+            }
+            totalPages = Math.ceil(recipes.length / cardsPerPage);
+            updatePageIndicator();
+            updateNavigation();
+            updateCarousel();
+        }
+        
+        // Update on resize
+        window.addEventListener('resize', updateCardsPerPage);
+
         function renderRecipes() {
             const container = document.getElementById('carouselTrack');
             container.innerHTML = '';
@@ -519,9 +656,8 @@
                 container.appendChild(card);
             });
             
-            totalPages = Math.ceil(recipes.length / cardsPerPage);
-            updatePageIndicator();
-            updateNavigation();
+            // Update cards per page and carousel after rendering
+            updateCardsPerPage();
         }
 
         function goToRecipe(recipeTitle) {
@@ -550,8 +686,27 @@
 
         function updateCarousel() {
             const track = document.getElementById('carouselTrack');
-            const cardWidth = 230 ; // card width + gap
-            const offset = currentPage * cardsPerPage * cardWidth;
+            const width = window.innerWidth;
+            let cardWidth, gap;
+            
+            if (width <= 400) {
+                cardWidth = 130;
+                gap = 12;
+            } else if (width <= 600) {
+                cardWidth = 140;
+                gap = 12;
+            } else if (width <= 800) {
+                cardWidth = 160;
+                gap = 16;
+            } else if (width <= 1200) {
+                cardWidth = 200;
+                gap = 16;
+            } else {
+                cardWidth = 220;
+                gap = 24;
+            }
+            
+            const offset = currentPage * cardsPerPage * (cardWidth + gap);
             track.style.transform = `translateX(-${offset}px)`;
             
             updateNavigation();
@@ -580,6 +735,8 @@
 
         // Initialize
         renderRecipes();
+        // Initial calculation - cards per page and carousel position
+        updateCardsPerPage();
     </script>
 </body>
 </html> 
