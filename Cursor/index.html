@@ -55,12 +55,20 @@
         }
         .carousel-container {
             position: relative;
-            overflow: hidden;
             margin: 0 auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-x;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none;
         }
         .carousel-track {
             display: flex;
-            transition: transform 0.5s ease-in-out;
             gap: 1.5rem;
         }
         .recipe-card {
@@ -77,6 +85,8 @@
             cursor: pointer;
             flex-shrink: 0;
             min-height: 400px;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
         .recipe-card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -260,11 +270,6 @@
             .carousel-track {
                 gap: 1rem;
             }
-            
-            /* Enable touch scrolling on mobile */
-            .carousel-container {
-                touch-action: pan-x;
-            }
             .recipe-card {
                 min-width: 160px;
                 max-width: 160px;
@@ -374,7 +379,7 @@
         <div class="main-title">Snacks</div>
     </header>
     <div class="snacks-container">
-        <div class="carousel-container">
+        <div class="carousel-container" id="carouselContainer">
             <div class="carousel-track" id="carouselTrack">
                 <!-- Recipe cards will be injected here by JavaScript -->
             </div>
@@ -610,25 +615,28 @@
         let currentPage = 0;
         let cardsPerPage = 6;
         let totalPages = 0;
-        
+        let cardWidth = 220;
+        let cardGap = 24;
+
+        function getCardMetrics() {
+            const width = window.innerWidth;
+            if (width <= 400) return { cardsPerPage: 2, cardWidth: 130, cardGap: 12 };
+            if (width <= 600) return { cardsPerPage: 2, cardWidth: 140, cardGap: 12 };
+            if (width <= 800) return { cardsPerPage: 3, cardWidth: 160, cardGap: 16 };
+            if (width <= 1200) return { cardsPerPage: 4, cardWidth: 200, cardGap: 16 };
+            return { cardsPerPage: 5, cardWidth: 220, cardGap: 24 };
+        }
+
         // Adjust cardsPerPage based on screen size
         function updateCardsPerPage() {
-            const width = window.innerWidth;
-            if (width <= 400) {
-                cardsPerPage = 2;
-            } else if (width <= 600) {
-                cardsPerPage = 2;
-            } else if (width <= 800) {
-                cardsPerPage = 3;
-            } else if (width <= 1200) {
-                cardsPerPage = 4;
-            } else {
-                cardsPerPage = 5;
-            }
+            const metrics = getCardMetrics();
+            cardsPerPage = metrics.cardsPerPage;
+            cardWidth = metrics.cardWidth;
+            cardGap = metrics.cardGap;
             totalPages = Math.ceil(recipes.length / cardsPerPage);
             updatePageIndicator();
             updateNavigation();
-            updateCarousel();
+            syncPageFromScroll();
         }
         
         // Update on resize
@@ -668,50 +676,39 @@
             window.location.href = filename;
         }
 
+        function scrollToPage(page) {
+            const container = document.getElementById('carouselContainer');
+            page = Math.max(0, Math.min(page, totalPages - 1));
+            currentPage = page;
+            container.scrollTo({ left: page * cardsPerPage * (cardWidth + cardGap), behavior: 'smooth' });
+            updateNavigation();
+            updatePageIndicator();
+        }
+
         function previousPage() {
-            if (currentPage > 0) {
-                currentPage--;
-                updateCarousel();
-            }
+            scrollToPage(currentPage - 1);
         }
 
         function nextPage() {
-            if (currentPage < totalPages - 1) {
-                currentPage++;
-                updateCarousel();
-            }
+            scrollToPage(currentPage + 1);
         }
 
         function goToPage(page) {
-            currentPage = page;
-            updateCarousel();
+            scrollToPage(page);
         }
 
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const width = window.innerWidth;
-            let cardWidth, gap;
-            
-            if (width <= 400) {
-                cardWidth = 130;
-                gap = 12;
-            } else if (width <= 600) {
-                cardWidth = 140;
-                gap = 12;
-            } else if (width <= 800) {
-                cardWidth = 160;
-                gap = 16;
-            } else if (width <= 1200) {
-                cardWidth = 200;
-                gap = 16;
-            } else {
-                cardWidth = 220;
-                gap = 24;
-            }
-            
-            const offset = currentPage * cardsPerPage * (cardWidth + gap);
-            track.style.transform = `translateX(-${offset}px)`;
-            
+        // Keep the nav buttons and page dots in sync while the user swipes freely
+        let scrollSyncFrame;
+        function onCarouselScroll() {
+            cancelAnimationFrame(scrollSyncFrame);
+            scrollSyncFrame = requestAnimationFrame(syncPageFromScroll);
+        }
+
+        function syncPageFromScroll() {
+            const container = document.getElementById('carouselContainer');
+            const pageWidth = cardsPerPage * (cardWidth + cardGap);
+            const page = pageWidth > 0 ? Math.round(container.scrollLeft / pageWidth) : 0;
+            currentPage = Math.max(0, Math.min(page, totalPages - 1));
             updateNavigation();
             updatePageIndicator();
         }
@@ -737,6 +734,7 @@
         }
 
         // Initialize
+        document.getElementById('carouselContainer').addEventListener('scroll', onCarouselScroll, { passive: true });
         renderRecipes();
         // Initial calculation - cards per page and carousel position
         updateCardsPerPage();
