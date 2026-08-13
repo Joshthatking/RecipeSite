@@ -53,6 +53,21 @@
             margin: 2.5rem auto 2rem auto;
             padding: 0 1rem;
         }
+        .category-section {
+            margin-bottom: 3rem;
+        }
+        .category-section:last-child {
+            margin-bottom: 0;
+        }
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff7043;
+            margin: 0 0 1.25rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ffd7c9;
+            text-align: center;
+        }
         .recipes {
             display: flex;
             flex-wrap: wrap;
@@ -193,6 +208,13 @@
                 margin: 1.5rem auto 1rem auto;
                 padding: 0 0.5rem;
             }
+            .category-title {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+            .category-section {
+                margin-bottom: 2rem;
+            }
             .recipes {
                 flex-direction: column;
                 align-items: center;
@@ -233,6 +255,9 @@
             .dinners-container {
                 margin: 1rem auto;
                 padding: 0 0.5rem;
+            }
+            .category-title {
+                font-size: 1.15rem;
             }
             .recipes {
                 gap: 1rem;
@@ -276,8 +301,8 @@
         <div class="main-title">Dinners</div>
     </header>
     <div class="dinners-container">
-        <div class="recipes" id="recipes">
-            <!-- Dinners recipes will be injected here by JavaScript -->
+        <div id="recipes">
+            <!-- Dinner category sections will be injected here by JavaScript -->
         </div>
     </div>
     <div class="modal-bg" id="modalBg">
@@ -333,6 +358,7 @@
           const recipes = [
             {
                 title: "Joshs Classic Pasta",
+                category: "Pasta",
                 image: "../images/pasta_og.png",
                 ingredients: [
                    "6 Cloves of Garlic",
@@ -357,6 +383,7 @@
             },
             {
                 title: "Original Chicken Rice Bowl",
+                category: "Chicken Based",
                 image: "../images/chickenrice.png",
                 ingredients: [
                     "Chicken Breast",
@@ -384,6 +411,7 @@
             },
             {
                 title: "Beef Bowl",
+                category: "Beef Based",
                 image: "../images/beef_bowl.png",
                 ingredients: [
                     ".65 Pounds of Ground beef Steak",
@@ -403,6 +431,7 @@
             },
             {
                 title: "Ultimate Steak Feast",
+                category: "Beef Based",
                 image: "../images/steak1.png",
                 ingredients: [
                     "Ribeye Steak",
@@ -426,6 +455,7 @@
             },
             {
                 title: "Sweet Potato Avocado Bowl",
+                category: "Beef Based",
                 image: "../images/sweetbowl.png",
                 ingredients: [
                     "1 Large Sweet Potato",
@@ -446,6 +476,7 @@
             },
             {
                 title: "Gochujang Chicken",
+                category: "Chicken Based",
                 image: "../images/gochu_chk.png",
                 ingredients: [
                     "Chicken Breast",
@@ -465,6 +496,7 @@
             },
             {
                 title: "Doenjang Jjigae",
+                category: "Stews",
                 image: "../images/doenjang.png",
                 ingredients: [
                     "Doenjang Paste",
@@ -484,6 +516,7 @@
             },
             {
                 title: "Fettuccine",
+                category: "Pasta",
                 image: "../images/fettucine.png",
                 ingredients: [
                     "Fettuccine Pasta",
@@ -500,28 +533,149 @@
                     "Stir in parmesan cheese until melted",
                     "Toss pasta in sauce and season to taste"
                 ]
+            },
+            {
+                title: "Beef Tacos",
+                category: "Beef Based",
+                image: "../images/beef_tacos.png",
+                ingredients: [
+                    "1 lb 80/20 Ground Beef",
+                    "Tortillas",
+                    "Tomato Paste",
+                    "Onions",
+                    "Tomato",
+                    "Jalapeno",
+                    "Avocado",
+                    "Mozzarella"
+                ],
+                steps: [
+                    "Olive oil pan on medium-high heat, add beef and tomato paste",
+                    "Cook ground beef in pan for about 10 minutes",
+                    "Dice tomatoes, onions, jalapeno, and avocado",
+                    "Heat up tortillas",
+                    "Put mozzarella on tortillas followed by beef and veggies",
+                    "Makes 4 tacos"
+                ]
+            },
+            {
+                title: "Salmon Quinoa",
+                category: "Fish Based",
+                image: "../images/salmon_quinoa.png",
+                ingredients: [
+                    "Salmon",
+                    "Quinoa",
+                    "Asparagus",
+                    "Lemon",
+                    "Avocado Oil"
+                ],
+                steps: [
+                    "Season and lemon the salmon, then spray with avocado oil",
+                    "Air fry salmon @ 400F for 12 minutes",
+                    "Cook quinoa on the stove",
+                    "Pan sear asparagus",
+                    "When salmon is done, add more lemon"
+                ]
+            },
+            {
+                title: "Homemade Pizza",
+                category: "Pasta",
+                image: "../images/pizza.png",
+                ingredients: [
+                    "Dough",
+                    "Mozzarella",
+                    "Tomatoes/Pasta Sauce",
+                    "Black Olives",
+                    "Pepperoni",
+                    "Salt",
+                    "Semolina Flour"
+                ],
+                steps: [
+                    "Semolina flour and salt on a tray with olive oil",
+                    "Knead dough into a circle of desired size",
+                    "Put sauce, mozzarella, pepperoni, and black olives on top",
+                    "Cook pizza in oven at 400F for 20 minutes"
+                ]
+            },
+            {
+                title: "Tuna Salad",
+                category: "Fish Based",
+                image: "../images/tuna.png",
+                ingredients: [
+                    "Tuna Can",
+                    "Onions",
+                    "Carrots",
+                    "Celery",
+                    "Mayonnaise",
+                    "Parsley",
+                    "Tortilla Wrap/Seaweed Wrap"
+                ],
+                steps: [
+                    "In a large bowl, put the tuna",
+                    "Small dice the onions, carrots, and celery",
+                    "Add to bowl with salt, pepper, parsley, and mayo",
+                    "Wrap with tortilla or seaweed!"
+                ]
+            },
+            {
+                title: "Turkey Wrap",
+                category: "Chicken Based",
+                image: "../images/turkey_wrap.png",
+                ingredients: [
+                    "Turkey Breast",
+                    "Ezekiel Tortilla",
+                    "Mayonnaise",
+                    "Cucumber",
+                    "Avocado"
+                ],
+                steps: [
+                    "Put avocado and mayo spread on tortilla",
+                    "Put turkey and thinly sliced cucumber on top with a little salt"
+                ]
             }
         ];
 
+        const categoryOrder = ["Beef Based", "Chicken Based", "Fish Based", "Stews", "Pasta"];
+
         function renderRecipes() {
             const container = document.getElementById('recipes');
-            recipes.forEach(recipe => {
-                const card = document.createElement('div');
-                card.className = 'recipe-card';
-                card.onclick = () => goToRecipe(recipe.title);
-                card.innerHTML = `
-                    <img class="recipe-img" src="${recipe.image}" alt="${recipe.title}">
-                    <div class="recipe-title">${recipe.title}</div>
-                    <div class="section-title">Ingredients:</div>
-                    <ul>
-                        ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-                    </ul>
-                    <div class="section-title">Steps:</div>
-                    <ol>
-                        ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
-                    </ol>
-                `;
-                container.appendChild(card);
+            container.innerHTML = '';
+
+            categoryOrder.forEach(category => {
+                const categoryRecipes = recipes.filter(r => r.category === category);
+                if (categoryRecipes.length === 0) return;
+
+                const section = document.createElement('div');
+                section.className = 'category-section';
+
+                const heading = document.createElement('div');
+                heading.className = 'category-title';
+                heading.textContent = category;
+                section.appendChild(heading);
+
+                const row = document.createElement('div');
+                row.className = 'recipes';
+
+                categoryRecipes.forEach(recipe => {
+                    const card = document.createElement('div');
+                    card.className = 'recipe-card';
+                    card.onclick = () => goToRecipe(recipe.title);
+                    card.innerHTML = `
+                        <img class="recipe-img" src="${recipe.image}" alt="${recipe.title}">
+                        <div class="recipe-title">${recipe.title}</div>
+                        <div class="section-title">Ingredients:</div>
+                        <ul>
+                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                        </ul>
+                        <div class="section-title">Steps:</div>
+                        <ol>
+                            ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    `;
+                    row.appendChild(card);
+                });
+
+                section.appendChild(row);
+                container.appendChild(section);
             });
         }
         function goToRecipe(recipeTitle) {
