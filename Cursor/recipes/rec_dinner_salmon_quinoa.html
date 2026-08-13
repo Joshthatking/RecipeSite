@@ -457,7 +457,8 @@
                         height = chart.height,
                         ctx = chart.ctx;
                     ctx.restore();
-                    var fontSize = (height / 160).toFixed(2);
+                    var text = totalCalories + " cal";
+                    var fontSize = (String(totalCalories).length >= 4 ? height / 230 : height / 160).toFixed(2);
                     ctx.font = 'bold ' + fontSize + "em sans-serif";
                     ctx.textBaseline = "middle";
                     ctx.textAlign = "center";
@@ -468,8 +469,7 @@
                     ctx.shadowOffsetX = 0;
                     ctx.shadowOffsetY = 0;
 
-                    var text = totalCalories + " cal",
-                        textX = width / 2,
+                    var textX = width / 2,
                         textY = height / 2;
 
                     // Draw text with white color and opacity
